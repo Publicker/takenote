@@ -20,10 +20,14 @@
       border-bottom: 1px solid darken($note-sidebar-color, 8%);
       display: flex;
       align-items: center;
-      justify-content: space-between;
       font-weight: 500;
       font-size: 0.9rem;
       line-height: 1.3;
+
+      .icon-favorite {
+        margin-right: 0.25rem;
+        stroke: blue;
+      }
 
       &:hover {
         background: darken($note-sidebar-color, 5%);
@@ -37,6 +41,11 @@
         background: $primary;
         color: white;
 
+        .icon-favorite {
+          margin-right: 0.25rem;
+          stroke: white;
+        }
+
         &:hover {
           .note-options {
             color: white;
@@ -46,6 +55,7 @@
 
       .note-options {
         color: transparent;
+        margin-left: auto;
         padding: 0.5rem;
         z-index: 1;
         cursor: pointer;

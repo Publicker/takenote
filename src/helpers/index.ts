@@ -45,6 +45,10 @@ export const sortByLastUpdated = (a: NoteItem, b: NoteItem) => {
   return dateA > dateB ? -1 : dateA < dateB ? 1 : 0
 }
 
+export const sortByFavorite = (a: NoteItem, b: NoteItem) => {
+  return a.favorite ? -1 : 1
+}
+
 export const newNote = (categoryId?: string, folder?: Folder): NoteItem => ({
   id: uuid(),
   text: '',

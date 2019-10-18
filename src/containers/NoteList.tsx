@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MoreHorizontal } from 'react-feather'
+import { MoreHorizontal, Bookmark } from 'react-feather'
 import _ from 'lodash'
 
 import { Folder } from 'constants/enums'
 import NoteOptions from 'containers/NoteOptions'
-import { getNoteTitle, sortByLastUpdated } from 'helpers'
+import { getNoteTitle, sortByLastUpdated, sortByFavorite } from 'helpers'
 import { addCategoryToNote, pruneNotes, swapCategory, swapNote, searchNotes } from 'slices/note'
 import { NoteItem, ReactDragEvent, ReactMouseEvent, RootState } from 'types'
 
@@ -28,6 +28,7 @@ const NoteList: React.FC = () => {
     .filter(filter[activeFolder])
     .filter(isMatch)
     .sort(sortByLastUpdated)
+    .sort(sortByFavorite)
   const filteredCategories = categories.filter(({ id }) => id !== activeCategoryId)
 
   const dispatch = useDispatch()
@@ -108,6 +109,9 @@ const NoteList: React.FC = () => {
               draggable
               onDragStart={event => handleDragStart(event, note.id)}
             >
+              {note.favorite && (
+                <Bookmark size={15} className="icon-favorite" color="transparent" />
+              )}
               <div>{noteTitle}</div>
               <div
                 className={noteOptionsId === note.id ? 'note-options active ' : 'note-options'}
